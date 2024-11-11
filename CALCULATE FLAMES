@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string flames = "FLAMES";
+    string name1, name2;
+    int count = 0;
+
+    getline(cin, name1);
+    getline(cin, name2);
+
+    name1.erase(remove(name1.begin(), name1.end(), ' '), name1.end());
+    name2.erase(remove(name2.begin(), name2.end(), ' '), name2.end());
+
+    for (int i = 0; i < name1.size(); i++) {
+        for (int j = 0; j < name2.size(); j++) {
+            if (name1[i] == name2[j]) {
+                name1[i] = '*';
+                name2[j] = '*';
+                break;
+            }
+        }
+    }
+
+    for (int i = 0; i < name1.size(); i++) {
+        if (name1[i] != '*') count++;
+    }
+    for (int j = 0; j < name2.size(); j++) {
+        if (name2[j] != '*') count++;
+    }
+
+    while (flames.size() > 1) {
+        int index = (count % flames.size()) - 1;
+        if (index >= 0) {
+            flames.erase(flames.begin() + index);
+        } else {
+            flames.erase(flames.end() - 1);
+        }
+    }
+
+    if (flames == "F") 
+        cout << "FRIEND" << endl;
+    else if (flames == "L") 
+        cout << "LOVE" << endl;
+    else if (flames == "A") 
+        cout << "AFFECTION" << endl;
+    else if (flames == "M") 
+        cout << "MARRIAGE" << endl;
+    else if (flames == "E") 
+        cout << "ENEMY" << endl;
+    else if (flames == "S") 
+        cout << "SISTER" << endl;
+
+    return 0;
+}
